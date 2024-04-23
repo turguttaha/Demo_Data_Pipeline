@@ -1,0 +1,9 @@
+*venv
+*__pycache__/
+Dockerfile
+Readme.md
+.pre-commit-config.yaml
+.gitignore
+.git
+.bumpversion.cfg
+.ipynb
