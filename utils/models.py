@@ -1,4 +1,4 @@
-from utils.extract import get_last_day_measurements
+from utils.extract import get_last_2day_measurements
 
 
 class City:
@@ -7,7 +7,7 @@ class City:
         self.measurements = None
 
     async def initialize_measurements(self):
-        self.measurements = await get_last_day_measurements(self.name)
+        self.measurements = await get_last_2day_measurements(self.name)
 
     async def get_measurements(self):
         if self.measurements is None:

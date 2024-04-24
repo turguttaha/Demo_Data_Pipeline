@@ -10,11 +10,11 @@ headers = {"X-API-Key": api_key, "accept": "application/json"}
 session = httpx.AsyncClient(headers=headers)
 
 
-async def get_last_day_measurements(
+async def get_last_2day_measurements(
     city: str,
 ) -> list:
     current_datetime = datetime.now()
-    datetime_24_hours_ago = current_datetime - timedelta(hours=24)
+    datetime_24_hours_ago = current_datetime - timedelta(hours=48)
     result = await get_measurements(
         city=city, date_from=datetime_24_hours_ago, date_to=current_datetime
     )

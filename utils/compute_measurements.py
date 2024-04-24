@@ -10,15 +10,18 @@ from utils.measurement import (
 async def compute(city_name: str):
     city = City(name=city_name)
     await city.initialize_measurements()
-    if city.get_measurements() is not None:
+    measurements = city.get_measurements()
+    if measurements is not None and measurements != {}:
         print("Data is extacted!")
-    avg_per_location = await get_avg_per_location(city=city)
-    print("avg_per_location calculated!")
-    avg_of_the_city = get_avg_of_the_city(avg_per_location)
-    print("avg_city calculated!")
-    df_to_load = include_avg_of_the_city(
-        avg_per_location_df=avg_per_location, avg_city=avg_of_the_city
-    )
-    print("avg_city inclueded !")
-    load_data(df=df_to_load)
-    print("data is loaded !")
+        avg_per_location = await get_avg_per_location(city=city)
+        print("avg_per_location calculated!")
+        avg_of_the_city = get_avg_of_the_city(avg_per_location)
+        print("avg_city calculated!")
+        df_to_load = include_avg_of_the_city(
+            avg_per_location_df=avg_per_location, avg_city=avg_of_the_city
+        )
+        print("avg_city inclueded !")
+        load_data(df=df_to_load)
+        print("data is loaded !")
+    else:
+        print(f"There is no data for last two days from {city_name}")
